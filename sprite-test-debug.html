@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sprite System Test</title>
+    <style>
+        body { font-family: monospace; background: #000; color: #0f0; padding: 20px; }
+        .log { margin: 5px 0; }
+        .error { color: #f00; }
+        .success { color: #0f0; }
+        .warning { color: #ff0; }
+    </style>
+</head>
+<body>
+    <h1>Sprite System Debug Test</h1>
+    <div id="output"></div>
+
+    <script type="module">
+        const output = document.getElementById('output');
+        
+        function log(message, type = 'log') {
+            const div = document.createElement('div');
+            div.className = `log ${type}`;
+            div.textContent = message;
+            output.appendChild(div);
+            console.log(message);
+        }
+
+        async function test() {
+            try {
+                log('Testing sprite system...', 'warning');
+                
+                // Test 1: Load config
+                log('Test 1: Loading config.json...', 'warning');
+                const configResponse = await fetch('assets/sprites/config.json');
+                if (!configResponse.ok) {
+                    throw new Error(`Config load failed: ${configResponse.status}`);
+                }
+                const config = await configResponse.json();
+                log(`✓ Config loaded. Version: ${config.version}`, 'success');
+                log(`✓ Found ${Object.keys(config.spritesheets).length} spritesheets`, 'success');
+                
+                // Test 2: List spritesheets
+                log('\nTest 2: Checking spritesheets...', 'warning');
+                for (const [name, sheet] of Object.entries(config.spritesheets)) {
+                    log(`  - ${name}: ${sheet.path} (${sheet.frameWidth}x${sheet.frameHeight})`, 'success');
+                    const spriteCount = Object.keys(sheet.sprites).length;
+                    log(`    Sprites: ${Object.keys(sheet.sprites).join(', ')}`, 'success');
+                }
+                
+                // Test 3: Load sprite images
+                log('\nTest 3: Loading sprite images...', 'warning');
+                for (const [name, sheet] of Object.entries(config.spritesheets)) {
+                    try {
+                        const imgResponse = await fetch(sheet.path);
+                        if (imgResponse.ok) {
+                            log(`✓ ${name}: ${sheet.path} loaded (${imgResponse.headers.get('content-length')} bytes)`, 'success');
+                        } else {
+                            log(`✗ ${name}: ${sheet.path} failed (${imgResponse.status})`, 'error');
+                        }
+                    } catch (err) {
+                        log(`✗ ${name}: ${sheet.path} error: ${err.message}`, 'error');
+                    }
+                }
+                
+                // Test 4: Import and initialize SpriteManager
+                log('\nTest 4: Loading SpriteManager...', 'warning');
+                const { spriteManager } = await import('./src/js/sprites/SpriteManager.js');
+                log('✓ SpriteManager imported', 'success');
+                
+                log('\nTest 5: Initializing sprite manager...', 'warning');
+                await spriteManager.load('assets/sprites/config.json');
+                log('✓ SpriteManager initialized', 'success');
+                
+                // Test 6: List available sprites
+                log('\nTest 6: Available sprites:', 'warning');
+                const sprites = spriteManager.getAllSpriteNames();
+                log(`✓ Found ${sprites.length} sprites:`, 'success');
+                sprites.forEach(name => log(`  - ${name}`, 'success'));
+                
+                // Test 7: Check loading progress
+                log('\nTest 7: Loading progress:', 'warning');
+                const progress = spriteManager.getLoadingProgress();
+                log(`✓ Loaded: ${progress.loaded}/${progress.total} (${progress.percentage.toFixed(0)}%)`, 'success');
+                
+                if (progress.complete) {
+                    log('\n✓✓✓ ALL TESTS PASSED! Sprite system working correctly.', 'success');
+                } else {
+                    log('\n⚠ Some spritesheets failed to load', 'warning');
+                }
+                
+            } catch (error) {
+                log(`\n✗✗✗ TEST FAILED: ${error.message}`, 'error');
+                log(`Stack: ${error.stack}`, 'error');
+            }
+        }
+        
+        test();
+    </script>
+</body>
+</html>
