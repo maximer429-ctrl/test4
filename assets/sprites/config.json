@@ -3,8 +3,8 @@
   "spritesheets": {
     "cow": {
       "path": "assets/sprites/cow.png",
-      "frameWidth": 64,
-      "frameHeight": 64,
+      "frameWidth": 96,
+      "frameHeight": 96,
       "sprites": {
         "cow_idle": {
           "frames": [0, 1, 2, 3],
@@ -22,8 +22,8 @@
     },
     "sheep": {
       "path": "assets/sprites/sheep.png",
-      "frameWidth": 64,
-      "frameHeight": 64,
+      "frameWidth": 96,
+      "frameHeight": 96,
       "sprites": {
         "sheep_idle": {
           "frames": [0, 1, 2, 3],
@@ -41,8 +41,8 @@
     },
     "goat": {
       "path": "assets/sprites/goat.png",
-      "frameWidth": 64,
-      "frameHeight": 64,
+      "frameWidth": 96,
+      "frameHeight": 96,
       "sprites": {
         "goat_idle": {
           "frames": [0, 1, 2, 3],
@@ -60,8 +60,8 @@
     },
     "alpaca": {
       "path": "assets/sprites/alpaca.png",
-      "frameWidth": 64,
-      "frameHeight": 64,
+      "frameWidth": 96,
+      "frameHeight": 96,
       "sprites": {
         "alpaca_idle": {
           "frames": [0, 1, 2, 3],
