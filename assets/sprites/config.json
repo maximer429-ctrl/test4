@@ -1,0 +1,126 @@
+{
+  "version": "1.0.0",
+  "spritesheets": {
+    "ruminants": {
+      "path": "assets/sprites/ruminants.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "sprites": {
+        "cow_idle": {
+          "frames": [0, 1, 2, 3],
+          "row": 0,
+          "fps": 8,
+          "loop": true
+        },
+        "cow_walk": {
+          "frames": [0, 1, 2, 3, 4, 5],
+          "row": 1,
+          "fps": 10,
+          "loop": true
+        },
+        "sheep_idle": {
+          "frames": [0, 1, 2, 3],
+          "row": 2,
+          "fps": 6,
+          "loop": true
+        },
+        "sheep_walk": {
+          "frames": [0, 1, 2, 3, 4, 5],
+          "row": 3,
+          "fps": 10,
+          "loop": true
+        },
+        "goat_idle": {
+          "frames": [0, 1, 2, 3],
+          "row": 4,
+          "fps": 8,
+          "loop": true
+        },
+        "goat_walk": {
+          "frames": [0, 1, 2, 3, 4, 5],
+          "row": 5,
+          "fps": 10,
+          "loop": true
+        },
+        "alpaca_idle": {
+          "frames": [0, 1, 2, 3],
+          "row": 6,
+          "fps": 7,
+          "loop": true
+        },
+        "alpaca_walk": {
+          "frames": [0, 1, 2, 3, 4, 5],
+          "row": 7,
+          "fps": 10,
+          "loop": true
+        }
+      }
+    },
+    "player": {
+      "path": "assets/sprites/player.png",
+      "frameWidth": 48,
+      "frameHeight": 48,
+      "sprites": {
+        "ship_idle": {
+          "frames": [0],
+          "row": 0,
+          "fps": 1,
+          "loop": false
+        },
+        "ship_thrust": {
+          "frames": [0, 1, 2],
+          "row": 1,
+          "fps": 12,
+          "loop": true
+        }
+      }
+    },
+    "projectiles": {
+      "path": "assets/sprites/projectiles.png",
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "sprites": {
+        "player_bullet": {
+          "frames": [0, 1],
+          "row": 0,
+          "fps": 8,
+          "loop": true
+        },
+        "enemy_bullet": {
+          "frames": [0, 1],
+          "row": 1,
+          "fps": 6,
+          "loop": true
+        }
+      }
+    }
+  },
+  "metadata": {
+    "ruminants": {
+      "cow": {
+        "name": "Cow",
+        "pointValue": 10,
+        "speed": 1.0,
+        "animations": ["cow_idle", "cow_walk"]
+      },
+      "sheep": {
+        "name": "Sheep",
+        "pointValue": 20,
+        "speed": 1.2,
+        "animations": ["sheep_idle", "sheep_walk"]
+      },
+      "goat": {
+        "name": "Goat",
+        "pointValue": 30,
+        "speed": 1.5,
+        "animations": ["goat_idle", "goat_walk"]
+      },
+      "alpaca": {
+        "name": "Alpaca",
+        "pointValue": 40,
+        "speed": 1.8,
+        "animations": ["alpaca_idle", "alpaca_walk"]
+      }
+    }
+  }
+}
