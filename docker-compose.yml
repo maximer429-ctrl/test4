@@ -1,0 +1,38 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: troupo-invaders-dev
+    ports:
+      - "${HOST_PORT:-8080}:80"
+    volumes:
+      # Mount source code for hot-reload
+      - ./src:/usr/share/nginx/html/src:ro
+      - ./assets:/usr/share/nginx/html/assets:ro
+      - ./sprite-example.html:/usr/share/nginx/html/sprite-example.html:ro
+      - ./index.html:/usr/share/nginx/html/index.html:ro
+      # Mount nginx config
+      - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_PORT=80
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    networks:
+      - troupo-network
+
+networks:
+  troupo-network:
+    driver: bridge
+
+# Optional: Add backend service in the future
+# services:
+#   backend:
+#     image: node:18-alpine
+#     ...

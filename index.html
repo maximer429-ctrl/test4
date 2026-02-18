@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troup'O Invaders</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0.5; }
+        }
+        .subtitle {
+            font-size: 1.2em;
+            margin: 20px 0;
+            color: #0a0;
+        }
+        .links {
+            margin-top: 40px;
+        }
+        a {
+            display: inline-block;
+            color: #0f0;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #0f0;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+        a:hover {
+            background: #0f0;
+            color: #000;
+        }
+        .status {
+            margin-top: 40px;
+            padding: 20px;
+            border: 1px solid #0a0;
+            background: #001100;
+        }
+        .status-item {
+            margin: 10px 0;
+        }
+        .ready {
+            color: #0f0;
+        }
+        .pending {
+            color: #ff0;
+        }
+    </style>
+</head>
+<body>
+    <h1>TROUP'O INVADERS</h1>
+    <div class="subtitle">🐄 🐑 🐐 🦙 Space Invaders with Ruminants 🦙 🐐 🐑 🐄</div>
+    
+    <div class="links">
+        <a href="/sprite-example.html">Sprite System Demo</a>
+        <a href="/src/">Browse Source Code</a>
+        <a href="/assets/">Browse Assets</a>
+    </div>
+
+    <div class="status">
+        <h3>Development Status</h3>
+        <div class="status-item ready">✓ Docker Environment - Ready</div>
+        <div class="status-item ready">✓ Sprite System - Implemented</div>
+        <div class="status-item pending">○ WebGL Engine - Pending</div>
+        <div class="status-item pending">○ Game Logic - Pending</div>
+        <div class="status-item pending">○ Sprite Assets - Pending</div>
+    </div>
+
+    <script>
+        // Check if sprite system is accessible
+        fetch('/src/js/sprites/SpriteManager.js')
+            .then(response => {
+                if (response.ok) {
+                    console.log('✓ Sprite system files accessible');
+                }
+            })
+            .catch(err => {
+                console.warn('Sprite system check failed:', err);
+            });
+    </script>
+</body>
+</html>

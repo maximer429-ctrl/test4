@@ -1,0 +1,49 @@
+# Git files
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+*.md
+!README.md
+DEVELOPMENT.md
+AGENTS.md
+
+# Issue tracking
+.beads
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node modules (if added later)
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Build artifacts (if added later)
+dist
+build
+*.log
+
+# Test files
+test
+tests
+*.test.js
+*.spec.js
+
+# CI/CD
+.github
+.gitlab-ci.yml
+
+# Environment files
+.env
+.env.local
+.env.*.local
