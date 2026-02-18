@@ -73,30 +73,49 @@ def create_grid_sprite(width, height, cell_width, cell_height, colors):
     
     return png_signature + ihdr_chunk + idat_chunk + iend_chunk
 
-# Generate ruminants.png (384x512, 6x8 grid of 64x64)
-print("Generating ruminants.png...")
-ruminant_colors = [
-    # Row 0: Cow idle - brown shades
-    (139, 90, 43), (160, 110, 63), (139, 90, 43), (120, 80, 40), (0, 0, 0), (0, 0, 0),
-    # Row 1: Cow walk - brown shades
-    (139, 90, 43), (160, 110, 63), (139, 90, 43), (120, 80, 40), (160, 110, 63), (139, 90, 43),
-    # Row 2: Sheep idle - white/gray
-    (240, 240, 240), (220, 220, 220), (240, 240, 240), (200, 200, 200), (0, 0, 0), (0, 0, 0),
-    # Row 3: Sheep walk - white/gray
-    (240, 240, 240), (220, 220, 220), (240, 240, 240), (200, 200, 200), (220, 220, 220), (240, 240, 240),
-    # Row 4: Goat idle - tan/beige
-    (210, 180, 140), (190, 160, 120), (210, 180, 140), (180, 150, 110), (0, 0, 0), (0, 0, 0),
-    # Row 5: Goat walk - tan/beige
-    (210, 180, 140), (190, 160, 120), (210, 180, 140), (180, 150, 110), (190, 160, 120), (210, 180, 140),
-    # Row 6: Alpaca idle - cream/brown
-    (245, 222, 179), (238, 203, 173), (245, 222, 179), (222, 184, 135), (0, 0, 0), (0, 0, 0),
-    # Row 7: Alpaca walk - cream/brown
-    (245, 222, 179), (238, 203, 173), (245, 222, 179), (222, 184, 135), (238, 203, 173), (245, 222, 179),
-]
-ruminants_png = create_grid_sprite(384, 512, 64, 64, ruminant_colors)
-with open('assets/sprites/ruminants.png', 'wb') as f:
-    f.write(ruminants_png)
-print("✓ Created assets/sprites/ruminants.png (384x512)")
+# Generate individual ruminant spritesheets (6x2 grid of 64x64 each)
+ruminants = {
+    'cow': {
+        'colors': [
+            # Row 0: Cow idle - brown shades
+            (139, 90, 43), (160, 110, 63), (139, 90, 43), (120, 80, 40), (0, 0, 0), (0, 0, 0),
+            # Row 1: Cow walk - brown shades
+            (139, 90, 43), (160, 110, 63), (139, 90, 43), (120, 80, 40), (160, 110, 63), (139, 90, 43),
+        ]
+    },
+    'sheep': {
+        'colors': [
+            # Row 0: Sheep idle - white/gray
+            (240, 240, 240), (220, 220, 220), (240, 240, 240), (200, 200, 200), (0, 0, 0), (0, 0, 0),
+            # Row 1: Sheep walk - white/gray
+            (240, 240, 240), (220, 220, 220), (240, 240, 240), (200, 200, 200), (220, 220, 220), (240, 240, 240),
+        ]
+    },
+    'goat': {
+        'colors': [
+            # Row 0: Goat idle - tan/beige
+            (210, 180, 140), (190, 160, 120), (210, 180, 140), (180, 150, 110), (0, 0, 0), (0, 0, 0),
+            # Row 1: Goat walk - tan/beige
+            (210, 180, 140), (190, 160, 120), (210, 180, 140), (180, 150, 110), (190, 160, 120), (210, 180, 140),
+        ]
+    },
+    'alpaca': {
+        'colors': [
+            # Row 0: Alpaca idle - cream/brown
+            (245, 222, 179), (238, 203, 173), (245, 222, 179), (222, 184, 135), (0, 0, 0), (0, 0, 0),
+            # Row 1: Alpaca walk - cream/brown
+            (245, 222, 179), (238, 203, 173), (245, 222, 179), (222, 184, 135), (238, 203, 173), (245, 222, 179),
+        ]
+    }
+}
+
+for animal_name, data in ruminants.items():
+    print(f"Generating {animal_name}.png...")
+    animal_png = create_grid_sprite(384, 128, 64, 64, data['colors'])
+    with open(f'assets/sprites/{animal_name}.png', 'wb') as f:
+        f.write(animal_png)
+    print(f"✓ Created assets/sprites/{animal_name}.png (384x128)")
+
 
 # Generate player.png (288x96, 6x2 grid of 48x48)
 print("Generating player.png...")
@@ -126,7 +145,10 @@ print("✓ Created assets/sprites/projectiles.png (32x32)")
 
 print("\n✓ All placeholder sprite sheets generated successfully!")
 print("\nSprite sheets created:")
-print("  - assets/sprites/ruminants.png (8 rows of ruminant animations)")
+print("  - assets/sprites/cow.png (cow animations)")
+print("  - assets/sprites/sheep.png (sheep animations)")
+print("  - assets/sprites/goat.png (goat animations)")
+print("  - assets/sprites/alpaca.png (alpaca animations)")
 print("  - assets/sprites/player.png (player ship animations)")
 print("  - assets/sprites/projectiles.png (bullet animations)")
 print("\nYou can now test the sprite system at http://localhost:8080/sprite-example.html")

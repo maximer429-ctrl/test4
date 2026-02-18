@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
   "spritesheets": {
-    "ruminants": {
-      "path": "assets/sprites/ruminants.png",
+    "cow": {
+      "path": "assets/sprites/cow.png",
       "frameWidth": 64,
       "frameHeight": 64,
       "sprites": {
@@ -17,40 +17,61 @@
           "row": 1,
           "fps": 10,
           "loop": true
-        },
+        }
+      }
+    },
+    "sheep": {
+      "path": "assets/sprites/sheep.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "sprites": {
         "sheep_idle": {
           "frames": [0, 1, 2, 3],
-          "row": 2,
+          "row": 0,
           "fps": 6,
           "loop": true
         },
         "sheep_walk": {
           "frames": [0, 1, 2, 3, 4, 5],
-          "row": 3,
+          "row": 1,
           "fps": 10,
           "loop": true
-        },
+        }
+      }
+    },
+    "goat": {
+      "path": "assets/sprites/goat.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "sprites": {
         "goat_idle": {
           "frames": [0, 1, 2, 3],
-          "row": 4,
+          "row": 0,
           "fps": 8,
           "loop": true
         },
         "goat_walk": {
           "frames": [0, 1, 2, 3, 4, 5],
-          "row": 5,
+          "row": 1,
           "fps": 10,
           "loop": true
-        },
+        }
+      }
+    },
+    "alpaca": {
+      "path": "assets/sprites/alpaca.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "sprites": {
         "alpaca_idle": {
           "frames": [0, 1, 2, 3],
-          "row": 6,
+          "row": 0,
           "fps": 7,
           "loop": true
         },
         "alpaca_walk": {
           "frames": [0, 1, 2, 3, 4, 5],
-          "row": 7,
+          "row": 1,
           "fps": 10,
           "loop": true
         }
